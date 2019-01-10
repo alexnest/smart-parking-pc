@@ -283,6 +283,46 @@ export const asyncRouterMap = [
             ]
           },
         ]
+      },
+
+      // parking
+      {
+        path: '/parking',
+        component: RouteView,
+        name: 'parking',
+        meta: { title: '园区管理', icon: 'user', keepAlive: true, permission: [ 'user' ] },
+        children: [
+          {
+            path: '/parking',
+            name: 'parking',
+            component: () => import('@/views/parking/parking/Parking'),
+            meta: { title: '园区信息', keepAlive: true, permission: [ 'user' ] }
+          },
+          {
+            path: '/area',
+            name: 'area',
+            component: () => import('@/views/parking/area/Area'),
+            meta: { title: '区域信息', keepAlive: true, permission: [ 'user' ] }
+          },
+          {
+            path: '/channel',
+            name: 'channel',
+            component: () => import('@/views/parking/channel/Channel'),
+            meta: { title: '门道信息', keepAlive: true, permission: [ 'user' ] }
+          },
+          {
+            path: '/meeting',
+            name: 'meeting',
+            component: () => import('@/views/parking/meeting/Meeting'),
+            meta: { title: '会议室信息', keepAlive: true, permission: [ 'user' ] }
+          },
+          {
+            path: '/org',
+            name: 'org',
+            component: () => import('@/views/parking/org/Org'),
+            meta: { title: '组织架构', keepAlive: true, permission: [ 'user' ] }
+          }
+        ]
       }
     ]
   },

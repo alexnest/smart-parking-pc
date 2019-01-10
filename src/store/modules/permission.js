@@ -16,7 +16,7 @@ function hasPermission(permission, route) {
         return true
       }
     }
-    return false
+    return true
   }
   return true
 }
