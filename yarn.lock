@@ -6645,6 +6645,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
 
+reqwest@^2.0.5:
+  version "2.0.5"
+  resolved "http://registry.npm.taobao.org/reqwest/download/reqwest-2.0.5.tgz#00fb15ac4918c419ca82b43f24c78882e66039a1"
+  integrity sha1-APsVrEkYxBnKgrQ/JMeIguZgOaE=
+
 resize-observer-polyfill@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz#660ff1d9712a2382baa2cad450a4716209f9ca69"
@@ -6815,6 +6820,11 @@ schema-utils@^1.0.0:
     ajv "^6.1.0"
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
+
+scrollparent@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/scrollparent/download/scrollparent-2.0.1.tgz#715d5b9cc57760fb22bdccc3befb5bfe06b1a317"
+  integrity sha1-cV1bnMV3YPsivczDvvtb/gaxoxc=
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
@@ -7895,6 +7905,11 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
 
+vue-infinite-scroll@^2.0.2:
+  version "2.0.2"
+  resolved "http://registry.npm.taobao.org/vue-infinite-scroll/download/vue-infinite-scroll-2.0.2.tgz#ca37a91fe92ee0ad3b74acf8682c00917144b711"
+  integrity sha1-yjepH+ku4K07dKz4aCwAkXFEtxE=
+
 vue-loader@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.4.2.tgz#812bb26e447dd3b84c485eb634190d914ce125e2"
@@ -7909,9 +7924,19 @@ vue-ls@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/vue-ls/-/vue-ls-3.2.0.tgz#33356ad3ec9c30dac203757cf4036abe4ff767b3"
 
+vue-observe-visibility@^0.4.3:
+  version "0.4.3"
+  resolved "http://registry.npm.taobao.org/vue-observe-visibility/download/vue-observe-visibility-0.4.3.tgz#b2694a83c94b274f566e03a497df51540e2daedc"
+  integrity sha1-smlKg8lLJ09WbgOkl99RVA4trtw=
+
 vue-ref@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/vue-ref/-/vue-ref-1.0.3.tgz#5b7bbfc6f5833e13f5a9155ac686fafdb03dbcad"
+
+vue-resize@^0.4.5:
+  version "0.4.5"
+  resolved "http://registry.npm.taobao.org/vue-resize/download/vue-resize-0.4.5.tgz#4777a23042e3c05620d9cbda01c0b3cc5e32dcea"
+  integrity sha1-R3eiMELjwFYg2cvaAcCzzF4y3Oo=
 
 vue-router@^3.0.1:
   version "3.0.2"
@@ -7934,6 +7959,15 @@ vue-template-compiler@^2.5.17:
 vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
+
+vue-virtual-scroller@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "http://registry.npm.taobao.org/vue-virtual-scroller/download/vue-virtual-scroller-1.0.0-beta.4.tgz#a86068c83949eebf43f87c85134b37da366f2390"
+  integrity sha1-qGBoyDlJ7r9D+HyFE0s32jZvI5A=
+  dependencies:
+    scrollparent "^2.0.1"
+    vue-observe-visibility "^0.4.3"
+    vue-resize "^0.4.5"
 
 vue@^2.5.17, vue@^2.5.3:
   version "2.5.17"

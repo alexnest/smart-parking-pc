@@ -22,9 +22,9 @@
       </a-form>
     </div>
 
-    <div class="table-operator">
-      <a-button type="primary" icon="plus" v-if="$auth('table.add')">新建</a-button>
-      <a-dropdown v-if="$auth('table.edit') && selectedRowKeys.length > 0">
+    <div style="margin-bottom:10px;" class="table-operator">
+      <a-button type="primary" icon="plus">新建</a-button>
+      <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
           <!-- lock | unlock -->
@@ -57,86 +57,16 @@
             <a-menu-item>
               <a href="javascript:;">详情</a>
             </a-menu-item>
-            <a-menu-item v-if="$auth('table.disable')">
+            <a-menu-item>
               <a href="javascript:;">禁用</a>
             </a-menu-item>
-            <a-menu-item v-if="$auth('table.delete')">
+            <a-menu-item>
               <a href="javascript:;">删除</a>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
       </span>
     </s-table>
-
-    <a-modal
-      title="操作"
-      :width="800"
-      v-model="visible"
-      @ok="handleOk"
-    >
-      <a-form :autoFormCreate="(form)=>{this.form = form}">
-
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label='规则编号'
-          hasFeedback
-          validateStatus='success'
-        >
-          <a-input placeholder='规则编号' v-model="mdl.no" id='no' />
-        </a-form-item>
-
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label='服务调用次数'
-          hasFeedback
-          validateStatus='success'
-        >
-          <a-input-number :min="1" id="callNo" v-model="mdl.callNo" style="width: 100%" />
-        </a-form-item>
-
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label='状态'
-          hasFeedback
-          validateStatus='warning'
-        >
-          <a-select defaultValue='1' v-model="mdl.status">
-            <a-select-option value='1'>Option 1</a-select-option>
-            <a-select-option value='2'>Option 2</a-select-option>
-            <a-select-option value='3'>Option 3</a-select-option>
-          </a-select>
-        </a-form-item>
-
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label='描述'
-          hasFeedback
-          help='请填写一段描述'
-        >
-          <a-textarea :rows="5" v-model="mdl.description" placeholder="..." id='description'/>
-        </a-form-item>
-
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label='更新时间'
-          hasFeedback
-          validateStatus='error'
-        >
-          <a-date-picker
-            style="width: 100%"
-            showTime
-            format="YYYY-MM-DD HH:mm:ss"
-            placeholder="Select Time"
-          />
-        </a-form-item>
-
-      </a-form>
-    </a-modal>
 
   </a-card>
 </template>
@@ -188,13 +118,11 @@
             title: '园区类型',
             dataIndex: 'callNo',
             sorter: true,
-            needTotal: true,
             customRender: (text) => text + ' 次'
           },
           {
             title: '园区地址',
-            dataIndex: 'status',
-            needTotal: true
+            dataIndex: 'status'
           },
           {
             title: '负责人姓名',
@@ -202,17 +130,17 @@
             sorter: true
           },
           {
-            table: '负责人手机',
-             dataIndex: 'description',
+            title: '负责人手机',
+            dataIndex: 'description',
             sorter: true
           },
           {
-            table: '状态',
-             dataIndex: 'description',
+            title: '状态',
+            dataIndex: 'description',
             sorter: true
           },
           {
-            table: '操作',
+            title: '操作',
             dataIndex: 'action',
             width: '150px',
             scopedSlots: { customRender: 'action' },
