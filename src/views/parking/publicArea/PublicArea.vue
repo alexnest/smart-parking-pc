@@ -1,6 +1,6 @@
 <template>
     <div>
-        企业机构
+      公共区域
     </div>
 </template>
 

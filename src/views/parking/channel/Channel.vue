@@ -1,6 +1,6 @@
 <template>
     <div>
-        渠道管理    
+        通道信息    
     </div>
 </template>
 

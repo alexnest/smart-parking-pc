@@ -1,74 +1,95 @@
 <template>
-  <a-card :bordered="false">
-    <div class="table-page-search-wrapper">
-      <a-form layout="inline">
-        <a-row :gutter="48">
-          <a-col :md="8" :sm="24">
-            <a-form-item label="使用状态">
-              <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
-                <a-select-option value="0">全部</a-select-option>
-                <a-select-option value="1">运行中</a-select-option>
-                <a-select-option value="2">关闭</a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-          <a-col :md="!advanced && 8 || 24" :sm="24">
-            <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
-              <a-button type="primary" @click="$refs.table.refresh()">查询</a-button>
+  <div>
+    <a-card title="搜索条件" :bordered="false">
+      <div class="table-page-search-wrapper">
+        <a-form>
+          <a-row>
+            <a-col class="ant-form-item-label" style="right:5px;" :span="2">园区名称：</a-col>
+            <a-col :span="4">
+              <a-form-item>
+                <a-input placeholder="请输入园区名称"></a-input>
+              </a-form-item>
+            </a-col>
+            <a-col class="ant-form-item-label" style="right:5px;" :span="3">负责人姓名：</a-col>
+            <a-col :span="4">
+              <a-form-item>
+                <a-input placeholder="请输入负责人姓名"></a-input>
+              </a-form-item>
+            </a-col>
+            <a-col class="ant-form-item-label" style="right:5px;" :span="3">使用状态：</a-col>
+            <a-col :span="3">
+              <a-form-item>
+                <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
+                  <a-select-option value="0">全部</a-select-option>
+                  <a-select-option value="1">运行中</a-select-option>
+                  <a-select-option value="2">关闭</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+          </a-row>
+          <a-row>
+            <a-col :span="24">
+              <a-button  type="primary" @click="$refs.table.refresh()">查询</a-button>
               <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-            </span>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </a-card>
 
-    <div style="margin-bottom:10px;" class="table-operator">
-      <a-button type="primary" icon="plus">新建</a-button>
-      <a-dropdown v-if="selectedRowKeys.length > 0">
-        <a-menu slot="overlay">
-          <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
-          <!-- lock | unlock -->
-          <a-menu-item key="2"><a-icon type="lock" />锁定</a-menu-item>
-        </a-menu>
-        <a-button style="margin-left: 8px">
-          批量操作 <a-icon type="down" />
-        </a-button>
-      </a-dropdown>
-    </div>
+    <div style="margin-bottom:10px;"></div>
 
-    <s-table
-      ref="table"
-      size="default"
-      :columns="columns"
-      :data="loadData"
-      :showAlertInfo="true"
-      @onSelect="onChange"
-    >
-      <span slot="action" slot-scope="text, record">
-        <template v-if="$auth('table.update')">
-          <a @click="handleEdit(record)">编辑</a>
-          <a-divider type="vertical" />
-        </template>
-        <a-dropdown>
-          <a class="ant-dropdown-link">
-            更多 <a-icon type="down" />
-          </a>
+    <a-card title="搜索列表">
+      <a slot="extra">
+        <a-button @click="openParkingDialog()" type="primary" icon="plus">新建</a-button>
+        <a-dropdown v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
-            <a-menu-item>
-              <a href="javascript:;">详情</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">禁用</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">删除</a>
-            </a-menu-item>
+            <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
+            <!-- lock | unlock -->
+            <a-menu-item key="2"><a-icon type="lock" />锁定</a-menu-item>
           </a-menu>
+          <a-button style="margin-left: 8px">
+            批量操作 <a-icon type="down" />
+          </a-button>
         </a-dropdown>
-      </span>
-    </s-table>
+      </a>
+      <s-table
+        ref="table"
+        size="default"
+        :columns="columns"
+        :data="loadData"
+        :showAlertInfo="true"
+        @onSelect="onChange"
+      >
+        <span slot="action" slot-scope="text, record">
+          <template v-if="$auth('table.update')">
+            <a @click="handleEdit(record)">编辑</a>
+            <a-divider type="vertical" />
+          </template>
+          <a-dropdown>
+            <a class="ant-dropdown-link">
+              更多 <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item>
+                <a href="javascript:;">详情</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;">禁用</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;">删除</a>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </span>
+      </s-table>
+    </a-card>
 
-  </a-card>
+    <a-modal class="parkingDialog" :visible="parkingDialogVisible" title="园区" @ok="handleParkingDialog()" @cancel="handleParkingDialog()">
+
+    </a-modal>
+  </div>
 </template>
 
 <script>
@@ -89,6 +110,7 @@
     data () {
       return {
         visible: false,
+        parkingDialogVisible: false,
         labelCol: {
           xs: { span: 24 },
           sm: { span: 5 },
@@ -122,21 +144,21 @@
           },
           {
             title: '园区地址',
-            dataIndex: 'status'
+            dataIndex: 'address'
           },
           {
             title: '负责人姓名',
-            dataIndex: 'description',
+            dataIndex: 'name',
             sorter: true
           },
           {
             title: '负责人手机',
-            dataIndex: 'description',
+            dataIndex: 'phone',
             sorter: true
           },
           {
             title: '状态',
-            dataIndex: 'description',
+            dataIndex: 'status',
             sorter: true
           },
           {
@@ -184,6 +206,12 @@
         this.queryParam = {
           date: moment(new Date())
         }
+      },
+      openParkingDialog() {
+        this.parkingDialogVisible = true
+      },
+      handleParkingDialog() {
+        this.parkingDialogVisible = false
       }
     },
     watch: {
@@ -202,3 +230,9 @@
     }
   }
 </script>
+
+<style>
+  .parkingDialog .ant-modal-footer {
+    display: none
+  }
+</style>

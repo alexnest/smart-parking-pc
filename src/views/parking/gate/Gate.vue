@@ -1,6 +1,6 @@
 <template>
     <div>
-        会议室管理    
+      门口信息    
     </div>
 </template>
 
